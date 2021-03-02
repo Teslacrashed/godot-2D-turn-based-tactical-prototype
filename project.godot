@@ -31,6 +31,10 @@ config/description="A basic prototype for a 2D turn based, tile-map based tactic
 run/main_scene="res://project/main/main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Map="*res://project/auto_load/map.gd"
+
 [display]
 
 window/size/height=640
