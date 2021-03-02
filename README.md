@@ -10,7 +10,7 @@
  This class extends TileMap and is only used to build your map information and TileCells. Your TileMap should extend from TileGrid, and then call it's fabricate_tile_grid() function and it will grab all relevant information.
 
 ### TileCell
- This class is used to create resource nodes for every tile on your map. These work very well for holding information like the TileCells location, ID's for AStar navigation, and information like if the TileCell is occupied by a unit. 
+ This class is used to create resource nodes for every tile on your map. These work very well for holding information like the TileCells location, ID's for AStar navigation, and information like if the TileCell is occupied by a unit. I find using these resource nodes makes it easier to pass information around and process pathfinding or movement than some other tutorials I followed before.
 
 ### Map
  This is an AutoLoad Singleton class that holds all map information so it's easily accessible by any node necessary. UI components, pathfinding, etc.
