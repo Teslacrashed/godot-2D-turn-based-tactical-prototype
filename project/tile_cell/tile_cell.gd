@@ -21,13 +21,13 @@ const CARDINAL := [DIR_N, DIR_E, DIR_S, DIR_W]
 # The properties of TileCells.
 # Can put your troop/unit/character class in here as well for easy grabbing, like below.
 # var unit: Unit setget set_unit, get_unit
-var center: Vector2 setget set_center, get_center
-var coordinates: Vector2 setget set_coordinates, get_coordinates
-var id: int setget set_id, get_id
-var neighbors: Array setget set_neighbors, get_neighbors
-var position: Vector2 setget set_position, get_position
-var rect: Rect2 setget set_rect, get_rect
-var unit: Node2D setget set_unit, get_unit
+var center: Vector2: get = get_center, set = set_center
+var coordinates: Vector2: get = get_coordinates, set = set_coordinates
+var id: int: get = get_id, set = set_id
+var neighbors: Array: get = get_neighbors, set = set_neighbors
+var position: Vector2: get = get_position, set = set_position
+var rect: Rect2: get = get_rect, set = set_rect
+var unit: Node2D: get = get_unit, set = set_unit
 
 
 func _init(_center: Vector2, _coords: Vector2, _id: int, _pos: Vector2, _rect: Rect2) -> void:

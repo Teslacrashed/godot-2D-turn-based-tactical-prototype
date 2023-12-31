@@ -42,9 +42,9 @@ func get_cell_at(tile: Vector2) -> TileCell:
 	return grid[tile]
 
 
-func get_adjacent_tiles(tile: Vector2) -> PoolVector2Array:
+func get_adjacent_tiles(tile: Vector2) -> PackedVector2Array:
 	# Returns Cartesian coordinates of all valid adjacent tiles in the cardinal directions.
-	var tiles: PoolVector2Array = []
+	var tiles: PackedVector2Array = []
 
 	for dir in CARDINAL:
 		if is_within_bounds(tile + dir):
@@ -58,9 +58,9 @@ func map_position(grid_position: Vector2) -> Vector2:
 	return grid_position * TILE_SIZE + OFFSET
 
 
-func grid_coordinates(map_position: Vector2) -> Vector2:
+func grid_coordinates(map_position_param: Vector2) -> Vector2:
 	# Returns the coordinates of the cell on the grid given a position on the map.
-	return (map_position / TILE_SIZE).floor()
+	return (map_position_param / TILE_SIZE).floor()
 
 
 func is_within_bounds(coords: Vector2) -> bool:

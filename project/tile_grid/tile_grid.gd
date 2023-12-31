@@ -24,18 +24,18 @@ const CARDINAL = [DIR_N, DIR_E, DIR_S, DIR_W]
 # Grid used to create all TileCells.
 # Allows easy retrieval of TileCells.
 # {Vector2: TileCell}
-var _grid: Dictionary setget _set_grid, _get_grid # Holds all TileCell data
+var _grid: Dictionary: get = _get_grid, set = _set_grid # Holds all TileCell data
 
 # Properties used to ensure only valid locations are used to create the grid and cells.
 # Many of these are likely unneeded, but I'm a fan of forward preparedness.
-onready var _bounds: Rect2 = get_used_rect()
-onready var _origin_x: int = _bounds.position.x
-onready var _origin_y: int = _bounds.position.y
-onready var _width: int = _bounds.end.x
-onready var _height: int = _bounds.end.y
-onready var _origins := Vector2(_origin_x, _origin_y)
-onready var _size := Vector2(_height, _width)
-onready var _all_tiles: Array = get_used_cells()
+@onready var _bounds: Rect2 = get_used_rect()
+@onready var _origin_x: int = int(_bounds.position.x)
+@onready var _origin_y: int = int(_bounds.position.y)
+@onready var _width: int = int(_bounds.end.x)
+@onready var _height: int = int(_bounds.end.y)
+@onready var _origins := Vector2(_origin_x, _origin_y)
+@onready var _size := Vector2(_width, _height)
+@onready var _all_tiles: Array = get_used_cells(0)
 
 
 func _ready():
@@ -73,9 +73,9 @@ func _fabricate_tile_grid() -> void:
 	for x in range(_width):
 		for y in range(_height):
 			var coords = Vector2(x, y)
-			var center = map_to_world(coords) + OFFSET
+			var center = map_to_local(coords) + OFFSET
 			var id = _get_id_for_point(coords)
-			var pos = map_to_world(coords)
+			var pos = map_to_local(coords)
 			var rect = Rect2(pos, TILE_SIZE)
 			_grid[coords] = TileCell.new(center, coords, id, pos, rect)
 
@@ -123,11 +123,11 @@ func _is_valid_map_tile(tile: Vector2) -> bool:
 		return false
 
 
-func _get_adjacent_tiles(tile: Vector2) -> PoolVector2Array:
+func _get_adjacent_tiles(tile: Vector2) -> PackedVector2Array:
 	# Returns all adjacent tiles in the cardinal directions of the passed tile.
 	# Probably a better way to do this inside _add_grid_tile_neighbors.
 
-	var tiles: PoolVector2Array = []
+	var tiles: PackedVector2Array = []
 
 	for dir in CARDINAL:
 		# Make sure tile is a valid location on map.

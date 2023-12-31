@@ -1,0 +1,6 @@
+res://default_env.tres
+res://project/main/main.tscn
+res://project/tile_grid/tile_grid.gd
+res://project/auto_load/map.gd
+res://project/cursor/cursor.gd
+res://project/battlemap/battlemap.gd

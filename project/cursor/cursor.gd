@@ -4,14 +4,14 @@ extends Node2D
 # Can be ajusted easily for keyboard/controller buttons.
 
 # Time before the cursor can move again in seconds.
-export var ui_cooldown: float = 0.1
+@export var ui_cooldown: float = 0.1
 
 # Coordinates of the current tile the cursor is hovering.
-var tile = Vector2.ZERO setget _set_tile
+var tile = Vector2.ZERO: set = _set_tile
 
 # Hold the cell the mouse cursor is hovering over.
 # Can be used to send information to things like UI elements.
-var _hovered_cell: TileCell setget _set_hovered_cell
+var _hovered_cell: TileCell: set = _set_hovered_cell
 
 # Selected cell for gameplay actions and UI components.
 # Used to give information to things like unit movement classes.
@@ -21,7 +21,7 @@ var _selected_cell: TileCell
 # Could have cancel shift the camera back to previous cell.
 var _previous_cell: TileCell
 
-onready var _timer: Timer = $Timer
+@onready var _timer: Timer = $Timer
 
 
 func _ready():
@@ -78,9 +78,9 @@ func _set_hovered_cell(cell: TileCell) -> void:
 func _handle_selection() -> void:
 	_selected_cell = _hovered_cell
 	print("selected cell: ", _selected_cell)
-	print(_selected_cell.print_cell())
+	_selected_cell.print_cell()
 
 
 func _handle_cancellation() -> void:
 	_selected_cell = null
-	print("cell cancelled: ", _selected_cell)
+	print("cell canceled: ", _selected_cell)
